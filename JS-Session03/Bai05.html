@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let choice; 
+        let expectedDate;
+        let role;
+        
+        let request = 0;
+        let successCount = 0;
+        let failCount = 0;
+        let review = 0;
+
+        do {
+            choice = prompt ("Có yêu cầu đặt mượn trước mới không?")
+            if (choice !== "có" && choice !== "không") {
+                console.log("Lựa chọn chỉ được là có hoặc không");
+                continue;
+            } else {
+                if (choice === "không") {
+                    console.log("Thoát chương trình!");
+                    break;
+                }
+            }
+            
+            let fullName = prompt("Tên bạn đọc: ");
+            let codeBook = prompt("Mã sách muốn đặt trước: ");
+            let nameBook = prompt("Tên sách tham khảo: ");
+
+            do {
+                expectedDate = +prompt("Số ngày dự kiến chờ: ")
+                if (expectedDate < 1) {
+                    console.log("Số ngày dự kiến chờ phải là số nguyên và không được bé hơn 1");  
+                }
+            } while (expectedDate < 1);
+
+            do {
+                role = +prompt("Nhập vai trò (nhập số tương ưng : 1.Sinh viên bình thường , 2.Giảng viên / Nghiên cứu sinh , 3. Nhân viên thư viện / Đặc cách) : ");
+                if (role !== 1 && role !==2 && role !== 3) {
+                    console.log("Vai trò chỉ được nhập số 1, 2 hoặc 3!");
+                }
+            } while (role !== 1 && role !==2 && role !== 3);
+
+            request ++ ;
+
+            if (expectedDate > 45) {
+                console.log("Từ chối: Thời gian chờ quá lâu (>45 ngày)");
+                failCount++ ;
+            } else if ( role === 3 ) {
+                console.log("Đặt trước thành công - Ưu tiên đặc cách cao nhất");
+                successCount++;
+            } else if ( role === 2 && expectedDate <= 30) {
+                console.log("Đặt trước thành công - Ưu tiên giảng viên/nghiên cứu");
+                successCount++ ;
+            } else if (role === 1 && expectedDate <= 21) {
+                console.log("Đặt trước thành công");
+                successCount++ ;
+            } else {
+                console.log("Đặt trước tạm thời - Chờ xét duyệt thêm");
+                review++ ;
+            }
+        } while (true);
+        console.log("Tổng số yêu cầu đã xử lý là : ",request);
+        console.log("Số yêu cầu được đặt trước thành công là : ",successCount);
+        console.log("Số yêu cầu bị từ chối là: ",failCount);
+        console.log("Số yêu cầu chờ xét duyệt là: ",review);
+        
+    </script>
+</body>
+</html>

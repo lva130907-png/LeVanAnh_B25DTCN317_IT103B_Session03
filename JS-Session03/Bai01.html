@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let turnBook = +prompt ("Hôm nay có bao nhiêu lượt mượn sách? ");
+        if (turnBook <= 0) {
+            console.log("Lượt mượn phải là số nguyên dương!");
+        } else {
+            for ( let i = 0 ; i < turnBook ; i++) {
+                prompt ("Tên người mượn: ");
+                prompt ("Tên sách: ");
+                let dayBook = +prompt ("Số ngày mượn (từ 1-30 ngày): ");
+                if (dayBook > 14 && dayBook <= 30 ) {
+                    console.log("Cảnh báo : Thời gian mượn vượt quy định (tối đa 14 ngày)");
+                } else if (dayBook > 30 || dayBook < 1) {
+                    console.log("Số ngày mượn không hợp lệ (chỉ từ 1 đến 30 ngày)");
+                }
+                else {
+                    console.log("Mượn thành công");
+                }
+            }
+        }
+
+        console.log("Tổng số lượt mượn trong ngày là: ",turnBook);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let choose;
+      let codeBook;
+      let quantity;
+      let statusBook;
+
+      let totalBook=0;
+      let lostBook=0;
+      let outBook=0;
+      let inventory=0;
+      let highInventory=0;
+
+      do {
+        choose = prompt("Tiếp tục kiểm kê sách tiếp theo?  ");
+        if (choose !== "có" && choose !== "không") {
+          console.log("Nhập sai lựa chọn, chỉ được nhập có hoặc không!");
+          continue;
+        } else {
+          if (choose === "không") {
+            console.log("Thoát chương trình...");
+            break;
+          }
+        }
+        do {
+            codeBook = prompt ("Mã sách: ");
+            if (codeBook === "" || codeBook === null) {
+                console.log("Mã sách không được để trống!");
+                continue;
+            }
+        } while (codeBook === "" || codeBook === null);
+
+        let bookName = prompt("Tên sách: ");
+
+        do {
+            quantity = +prompt("Số lượng thực tế đang có trong kho: ");
+            if (quantity < 0) {
+                console.log("Số lượng không được bé hơn 0, xin vui lòng nhập lại");
+            }
+        } while (quantity < 0);
+
+        do {
+            statusBook = +prompt("Tình trạng sách ( nhập số tương ứng : 1.Bình thường , 2.Mất) ")
+            if (statusBook !== 1 && statusBook !== 2) {
+                console.log("Bạn chỉ có thể nhập 1 hoặc 2");
+            }
+        } while (statusBook !== 1 && statusBook !== 2);
+
+        totalBook ++;
+
+        if(statusBook === 2) {
+            lostBook++;
+        } else if (statusBook === 1 && quantity === 0) {
+            outBook++;
+        } else if (statusBook === 1 && quantity >= 10) {
+            highInventory ++;
+        } else {
+            inventory++;
+        }
+
+
+      } while (true);
+      console.log("Tổng số sách đã kiểm kê: " , totalBook);
+      console.log("Số sách mất: ",lostBook);
+      console.log("Số sách hết hàng: ",outBook);
+      
+    </script>
+  </body>
+</html>

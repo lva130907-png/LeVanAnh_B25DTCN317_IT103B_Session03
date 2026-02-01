@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let choice;
+      let feedback;
+
+      let totalFeedback = 0;
+      let seriousComplaint = 0;
+      let averageComplaints = 0;
+      let minorComplaint = 0;
+      let propose = 0;
+      let positiveFeedback = 0;
+
+      do {
+        choice = prompt("Có khiếu nại/phản hồi mới từ bạn đọc không?");
+        if (choice !== "có" && choice !== "không") {
+          console.log("Chỉ được chọn có hoặc không, xin vui lòng nhập lại");
+          continue;
+        } else {
+          if (choice === "không") {
+            console.log("Thoát chương trình...");
+            break;
+          }
+        }
+
+        let fullName;
+        do {
+          fullName = prompt("Tên bạn đọc: ");
+          if (fullName === "" || fullName === null) {
+            console.log("Tên bạn đọc không được để trống!");
+            continue;
+          }
+        } while (fullName === "" || fullName === null);
+
+        let codeBook = prompt("Mã thẻ bạn đọc (nếu có): ");
+
+        do {
+          feedback = +prompt("Loại phản hồi (1-3): ");
+          if (feedback !== 1 && feedback !== 2 && feedback !== 3) {
+            console.log("Chỉ được nhập 1, 2 hoặc 3");
+          }
+        } while (feedback !== 1 && feedback !== 2 && feedback !== 3);
+
+        let level;
+        let content;
+        if (feedback === 1) {
+          do {
+            level = +prompt(
+              "Mức độ nghiệm trọng (nhập số: 1.Nhẹ , 2.Trung bình , 3.Nghiêm trọng)",
+            );
+            if (level !== 1 && level !== 2 && level !== 3)
+          } while (level !== 1 && level !== 2 && level !== 3);
+          content = prompt("Nội dung");
+        }
+        totalFeedback++;
+
+        if (feedback === 1 && level === 3) {
+          console.log("Chuyển ngay lãnh đạo - Khiếu nại nghiêm trọng");
+          seriousComplaint++;
+        } else if (feedback === 1 && level === 2) {
+          console.log("Ghi nhận, sẽ xử lý trong ngày - Khiếu nại trung bình");
+          averageComplaints++;
+        } else if (feedback === 1 && level === 1) {
+          console.log("Xử lý ngay tại quầy - Khiếu nại nhẹ");
+          minorComplaint++;
+        } else if (feedback === 2) {
+          console.log("Cảm ơn! Đề xuất đã được ghi nhận");
+          propose++;
+        } else {
+          console.log("Cảm ơn bạn đã phản hồi tích cực!");
+          positiveFeedback++;
+        }
+      } while (true);
+      console.log("Tổng số phản hồi/khiếu nại đã xử lý: ", totalFeedback);
+      console.log("Số khiếu nại nghiêm trọng (mức 3): ", seriousComplaint);
+      console.log("Số khiếu nại trung bình (mức 2): ", averageComplaints);
+      console.log("Số khiếu nại nhẹ (mức 1): ", minorComplaint);
+      console.log("Số đề xuất cải thiện: ", propose);
+      console.log("Số phản hồi tích cực", positiveFeedback);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let choose;
+      let borrowed;
+      let extend;
+      let successCount = 0;
+      let failCount = 0;
+      do {
+        choose = prompt("Có yêu cầu gia hạn mới không? (có/không)? ");
+        if (choose !== "có" && choose !== "không") {
+          console.log("Nhập sai lựa chọn, chỉ được nhập có hoặc không!");
+          continue;
+        } else {
+          if (choose === "không") {
+            console.log("Thoát chương trình...");
+            break;
+          }
+        }
+        let fullName = prompt("Tên bạn đọc: ");
+        let bookName = prompt("Tên sách: ");
+
+        do {
+          borrowed = +prompt("Số ngày đã mượn hiện tại là: ");
+          if (borrowed < 1) {
+            console.log(
+              "Số ngày đã mượn hiện tại không được bé hơn 1 , xin vui lòng nhập lại!",
+            );
+          }
+        } while (borrowed < 1);
+
+        do {
+          extend = +prompt("Vui lòng nhập số ngày muốn gia hạn thêm ");
+          if (extend < 1) {
+            console.log(
+              "Số ngày gia hạn không được bé hơn 1 , xin vui lòng nhập lại!",
+            );
+          }
+        } while (extend < 1);
+
+        let sumBorrowedExtend = borrowed + extend;
+
+        if (sumBorrowedExtend > 60) {
+          console.log(
+            "Không được gia hạn: Tổng thời gian vượt quá 60 ngày tối đa",
+          );
+          failCount++;
+        } else if (borrowed > 45) {
+          console.log("Không được gia hạn: Đã mượn quá lâu (>45 ngày)");
+          failCount++;
+        } else {
+          console.log("Gia hạn thành công");
+          successCount++;
+        }
+      } while (true);
+      console.log("Số lần gia hạn thành công:", successCount);
+      console.log("Số lần gia hạn không thành công:", failCount);
+    </script>
+  </body>
+</html>

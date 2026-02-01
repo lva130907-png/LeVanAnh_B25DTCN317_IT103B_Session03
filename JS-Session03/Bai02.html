@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let payBook = +prompt ("Hôm nay có bao nhiêu lượt trả sách?");
+        let latePay = 0;
+        if (payBook <= 0) {
+            console.log("Số lượt trả không hợp lệ!");
+        } else {
+            for (let i = 0; i < payBook ; i++) {
+                prompt ("Tên người trả: ");
+                prompt ("Tên sách: ");
+                let dayBook;
+                do {
+                    dayBook = +prompt ("Số ngày đã mượn: ");
+                    if (dayBook < 1 ){
+                        console.log("Ngày mượn không hợp lệ, Xin vui lòng nhập lại !");
+                    }
+                } while (dayBook < 1);
+                if (dayBook<=14) {
+                    console.log("Trả đúng hạn");
+                } else if ( dayBook > 14 && dayBook <= 21) {
+                    console.log("Trả muộn nhẹ, phạt nhắc nhở");
+                } else {
+                    console.log("Quá hạn nnghiêm trọng, cần ghi biên bản phạt");
+                }
+                if (dayBook >= 15) {
+                    latePay++;
+                }
+            }
+            console.log("Tổng số lượt trả sách là: " ,payBook);
+            console.log("Số lượt trả muộn (>=15 ngày): ",latePay);
+        }
+    </script>
+</body>
+</html>
